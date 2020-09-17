@@ -21,11 +21,11 @@ const makeCase = function(input, Case) {
         return str.join('_');
     }
 
-    const kebab = function(str) {
+    const kebabCase = function(str) {
         return str.join('-');
     }
 
-    const title = function(str) {
+    const titleCase = function(str) {
         // let newStr = '';
         // for(i = 0; i < str.length; i++) {
         //     newStr += str[i].charAt(0).toUpperCase() + str[i].slice(1) + ' ';
@@ -37,7 +37,7 @@ const makeCase = function(input, Case) {
         return pascalCase(str).split((/(?=[A-Z])/)).join(" ");
     }
 
-    const vowel = function(str) {
+    const vowelCase = function(str) {
         let vowels = ['a', 'e', 'i', 'o', 'u'];
         let newStr = str.split('');
 
@@ -52,7 +52,7 @@ const makeCase = function(input, Case) {
         return newStr.join('');
     }
 
-    const consonant = function(str) {
+    const consonantCase = function(str) {
         let vowels = 'aeiou';
         let newStr = str.split('');
 
@@ -65,23 +65,43 @@ const makeCase = function(input, Case) {
         return newStr.join('');
     }
 
-    return consonant(input);
+    //return consonant(input);
     //return vowel(input);
     //return title(str);
     //return snakeCase(str);
     //return pascalCase(str);
     //return camelCase(str);
+
+    const switchCase = function(Case) {
+        switch (Case) {
+            case 'camel' : return camelCase(str); 
+            case 'pascal' : return pascalCase(str); 
+            case 'snake' : return snakeCase(str);
+            case 'kebab' : return kebabCase(str); 
+            case 'title' : return titleCase(str); 
+            case 'vowel' : return vowelCase(input); 
+            case 'consonant' : return consonantCase(input); 
+        }
+    }
+
+    if (Array.isArray(Case)) {
+
+        return (Case[0] === 'upper' ? switchCase(Case[1]).toUpperCase() : 'invalid case');
+
+    } else {
+        return switchCase(Case);
+     }
   }
  
  
   console.log(makeCase("this is a string", "camel"));
-//   console.log(makeCase("this is a string", "pascal"));
-//   console.log(makeCase("this is a string", "snake"));
-//   console.log(makeCase("this is a string", "kebab"));
-//   console.log(makeCase("this is a string", "title"));
-//   console.log(makeCase("this is a string", "vowel"));
-//   console.log(makeCase("this is a string", "consonant"));
-//   console.log(makeCase("this is a string", ["upper", "snake"]));
+  console.log(makeCase("this is a string", "pascal"));
+  console.log(makeCase("this is a string", "snake"));
+  console.log(makeCase("this is a string", "kebab"));
+  console.log(makeCase("this is a string", "title"));
+  console.log(makeCase("this is a string", "vowel"));
+  console.log(makeCase("this is a string", "consonant"));
+  console.log(makeCase("this is a string", ["upper", "snake"]));
 
 // thisIsAString
 // ThisIsAString
