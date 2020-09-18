@@ -13,4 +13,4 @@ const integerToBinary = function(num) {
     }
 }
 
-console.log(integerToBinary(-1));
+console.log(integerToBinary(60));
